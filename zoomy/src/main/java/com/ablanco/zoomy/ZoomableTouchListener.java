@@ -31,7 +31,7 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
     private final DoubleTapListener mDoubleTapListener;
     private int mState = STATE_IDLE;
     private TargetContainer mTargetContainer;
-    private View mTarget;
+    View mTarget;
     private ImageView mZoomableView;
     private View mShadow;
     private ScaleGestureDetector mScaleGestureDetector;
@@ -223,6 +223,7 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
         mZoomableView.setScaleX(mScaleFactor);
         mZoomableView.setScaleY(mScaleFactor);
         obscureDecorView(mScaleFactor);
+        if (mZoomListener != null) mZoomListener.onViewScaled(mTarget, mScaleFactor);
         return true;
     }
 

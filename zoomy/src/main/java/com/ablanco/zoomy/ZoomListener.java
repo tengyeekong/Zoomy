@@ -9,5 +9,8 @@ import android.view.View;
 
 public interface ZoomListener {
     void onViewStartedZooming(View view);
+
     void onViewEndedZooming(View view);
+
+    void onViewScaled(View view, float scaleFactor);
 }
