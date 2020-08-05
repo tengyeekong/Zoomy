@@ -117,11 +117,11 @@ public class Zoomy {
         }
 
         private void checkNotDisposed() {
-            if (mDisposed) throw new IllegalStateException("Builder already disposed");
+            // if (mDisposed) throw new IllegalStateException("Builder already disposed");
         }
 
         public void setTargetView(View view) {
-            if(zoomableTouchListener != null)
+            if (zoomableTouchListener != null)
                 zoomableTouchListener.setTargetView(view);
         }
     }

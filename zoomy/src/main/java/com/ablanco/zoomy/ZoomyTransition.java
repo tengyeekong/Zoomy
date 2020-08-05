@@ -17,6 +17,10 @@ public class ZoomyTransition {
 
             @Override
             public void onViewStartedZooming(View view) {
+                for (ZoomListener listener : listeners) {
+                    if (listener != null)
+                        listener.onZoomStarted();
+                }
             }
 
             @Override
@@ -25,7 +29,8 @@ public class ZoomyTransition {
                     builder.setTargetView(targetView);
                 }
                 for (ZoomListener listener : listeners) {
-                    listener.zoomEnded(scaleFactor);
+                    if (listener != null)
+                        listener.zoomEnded(scaleFactor);
                 }
             }
 
@@ -33,7 +38,8 @@ public class ZoomyTransition {
             public void onViewScaled(View view, float scaleFactor) {
                 this.scaleFactor = scaleFactor;
                 for (ZoomListener listener : listeners) {
-                    listener.onZoomChanged(scaleFactor);
+                    if (listener != null)
+                        listener.onZoomChanged(scaleFactor);
                 }
             }
         });
@@ -41,8 +47,8 @@ public class ZoomyTransition {
 
     ArrayList<ZoomListener> listeners = new ArrayList<>();
 
-    View startingView;
-    View targetView;
+    public View startingView;
+    public View targetView;
 
     public void setStartingView(View view) {
         targetView.setVisibility(View.INVISIBLE);
@@ -59,6 +65,8 @@ public class ZoomyTransition {
     }
 
     public interface ZoomListener {
+        void onZoomStarted();
+
         void onZoomChanged(float scale);
 
         void zoomEnded(float scale);
