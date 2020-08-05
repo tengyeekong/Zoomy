@@ -77,8 +77,6 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
             mAnimatingZoomEnding = false;
             mState = STATE_IDLE;
 
-            if (mZoomListener != null) mZoomListener.onViewEndedZooming(mTarget);
-
             if (mConfig.isImmersiveModeEnabled()) showSystemUI();
         }
     };
@@ -173,6 +171,7 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
 
 
     private void endZoomingView() {
+        if (mZoomListener != null) mZoomListener.onViewEndedZooming(mTarget);
         if (mConfig.isZoomAnimationEnabled()) {
             mAnimatingZoomEnding = true;
             mZoomableView.animate()

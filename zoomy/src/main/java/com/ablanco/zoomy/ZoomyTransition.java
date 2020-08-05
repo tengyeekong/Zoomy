@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class ZoomyTransition {
 
     Zoomy.Builder zoomyBuilder;
-    Float treshold;
+    public Float treshold;
 
     public ZoomyTransition(final Zoomy.Builder builder, final Float treshold) {
         this.treshold = treshold;
