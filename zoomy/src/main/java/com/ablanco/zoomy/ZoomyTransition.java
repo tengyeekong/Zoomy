@@ -25,9 +25,6 @@ public class ZoomyTransition {
 
             @Override
             public void onViewEndedZooming(View view) {
-                if (scaleFactor > treshold) {
-                    builder.setTargetView(targetView);
-                }
                 for (ZoomListener listener : listeners) {
                     if (listener != null)
                         listener.zoomEnded(scaleFactor);
@@ -37,6 +34,11 @@ public class ZoomyTransition {
             @Override
             public void onViewScaled(View view, float scaleFactor) {
                 this.scaleFactor = scaleFactor;
+                if (scaleFactor > treshold) {
+                    builder.setTargetView(targetView);
+                } else {
+                    builder.setTargetView(startingView);
+                }
                 for (ZoomListener listener : listeners) {
                     if (listener != null)
                         listener.onZoomChanged(scaleFactor);
