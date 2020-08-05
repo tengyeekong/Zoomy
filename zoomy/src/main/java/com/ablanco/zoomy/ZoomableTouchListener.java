@@ -60,6 +60,7 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
     private PointF mCurrentMovementMidPoint = new PointF();
     private PointF mInitialPinchMidPoint = new PointF();
     private Point mTargetViewCords = new Point();
+    private Point finishingViewCords = new Point();
     private boolean mAnimatingZoomEnding = false;
     private Interpolator mEndZoomingInterpolator;
     private ZoomyConfig mConfig;
@@ -175,8 +176,8 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
         if (mConfig.isZoomAnimationEnabled()) {
             mAnimatingZoomEnding = true;
             mZoomableView.animate()
-                    .x(mTargetViewCords.x)
-                    .y(mTargetViewCords.y)
+                    .x(finishingViewCords.x)
+                    .y(finishingViewCords.y)
                     .scaleX(1)
                     .scaleY(1)
                     .setInterpolator(mEndZoomingInterpolator)
@@ -199,7 +200,7 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
         if (mShadow == null) mShadow = new View(mTarget.getContext());
         mShadow.setBackgroundResource(0);
 
-        addToDecorView(mShadow);
+        // addToDecorView(mShadow);
         addToDecorView(mZoomableView);
 
         //trick for simulating the view is getting out of his parent
@@ -222,7 +223,7 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
 
         mZoomableView.setScaleX(mScaleFactor);
         mZoomableView.setScaleY(mScaleFactor);
-        obscureDecorView(mScaleFactor);
+        //obscureDecorView(mScaleFactor);
         if (mZoomListener != null) mZoomListener.onViewScaled(mTarget, mScaleFactor);
         return true;
     }
@@ -266,5 +267,9 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
     private void disableParentTouch(ViewParent view) {
         view.requestDisallowInterceptTouchEvent(true);
         if (view.getParent() != null) disableParentTouch((view.getParent()));
+    }
+
+    public void setTargetView(View view) {
+        finishingViewCords = ViewUtils.getViewAbsoluteCords(view);
     }
 }
