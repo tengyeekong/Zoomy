@@ -56,8 +56,8 @@ public class ZoomyTransition {
     }
 
     public void setTargetView(View view) {
-        targetView.setVisibility(View.INVISIBLE);
         targetView = view;
+        targetView.setVisibility(View.INVISIBLE);
     }
 
     public void addZoomListener(ZoomListener listener) {
