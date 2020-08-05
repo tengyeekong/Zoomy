@@ -9,7 +9,7 @@ public class ZoomyTransition {
     Zoomy.Builder zoomyBuilder;
     Float treshold;
 
-    ZoomyTransition(final Zoomy.Builder builder, final Float treshold) {
+    public ZoomyTransition(final Zoomy.Builder builder, final Float treshold) {
         this.treshold = treshold;
         zoomyBuilder = builder;
         zoomyBuilder.zoomListener(new com.ablanco.zoomy.ZoomListener() {
