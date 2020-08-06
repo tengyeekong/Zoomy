@@ -173,12 +173,22 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
     private void endZoomingView() {
         if (mZoomListener != null) mZoomListener.onViewEndedZooming(mTarget);
         if (mConfig.isZoomAnimationEnabled()) {
+            float scaleX = 1f;
+            float scaleY = 1f;
+            if (targetView != null) {
+                float defaultWidth = mTarget.getWidth();
+                float defaultHeight = mTarget.getHeight();
+                float desiredWidth = targetView.getWidth();
+                float desiredHeight = targetView.getHeight();
+                scaleX = desiredWidth / defaultWidth;
+                scaleY = desiredHeight / defaultHeight;
+            }
             mAnimatingZoomEnding = true;
             mZoomableView.animate()
                     .x(finishingViewCords.x)
                     .y(finishingViewCords.y)
-                    .scaleX(1)
-                    .scaleY(1)
+                    .scaleX(scaleX)
+                    .scaleY(scaleY)
                     .setInterpolator(mEndZoomingInterpolator)
                     .withEndAction(mEndingZoomAction).start();
         } else mEndingZoomAction.run();
@@ -268,7 +278,10 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
         if (view.getParent() != null) disableParentTouch((view.getParent()));
     }
 
+    View targetView;
+
     public void setTargetView(View view) {
         finishingViewCords = ViewUtils.getViewAbsoluteCords(view);
+        targetView = view;
     }
 }
