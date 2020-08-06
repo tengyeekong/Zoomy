@@ -66,6 +66,10 @@ public class ZoomyTransition {
         listeners.add(listener);
     }
 
+    public void removeZoomListener(ZoomListener listener) {
+        listeners.remove(listener);
+    }
+
     public interface ZoomListener {
         void onZoomStarted();
 
