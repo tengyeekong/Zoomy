@@ -201,6 +201,8 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
 
 
     private void startZoomingView(View view) {
+        setTargetView(view);
+
         mZoomableView = new ImageView(mTarget.getContext());
         mZoomableView.setLayoutParams(new ViewGroup.LayoutParams(mTarget.getWidth(), mTarget.getHeight()));
         mZoomableView.setImageBitmap(ViewUtils.getBitmapFromView(view));
