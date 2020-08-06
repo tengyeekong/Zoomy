@@ -189,6 +189,7 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
                     .y(finishingViewCords.y)
                     .scaleX(scaleX)
                     .scaleY(scaleY)
+                    .setDuration(10000)
                     .setInterpolator(mEndZoomingInterpolator)
                     .withEndAction(mEndingZoomAction).start();
         } else mEndingZoomAction.run();
