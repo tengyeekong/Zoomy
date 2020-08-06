@@ -175,6 +175,8 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
         if (mConfig.isZoomAnimationEnabled()) {
             float scaleX = 1f;
             float scaleY = 1f;
+            float offsetX = 0f;
+            float offsetY = 0f;
             if (targetView != null) {
                 float defaultWidth = mTarget.getWidth();
                 float defaultHeight = mTarget.getHeight();
@@ -182,11 +184,14 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
                 float desiredHeight = targetView.getHeight();
                 scaleX = desiredWidth / defaultWidth;
                 scaleY = desiredHeight / defaultHeight;
+                offsetX = desiredWidth - defaultWidth;
+                offsetY = desiredHeight - defaultHeight;
             }
             mAnimatingZoomEnding = true;
+
             mZoomableView.animate()
-                    .x(finishingViewCords.x)
-                    .y(finishingViewCords.y)
+                    .x(finishingViewCords.x + offsetX)
+                    .y(finishingViewCords.y + offsetY)
                     .scaleX(scaleX)
                     .scaleY(scaleY)
                     .setDuration(10000)
