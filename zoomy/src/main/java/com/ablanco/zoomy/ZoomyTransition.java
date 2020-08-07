@@ -35,9 +35,11 @@ public class ZoomyTransition {
             public void onViewScaled(View view, float scaleFactor) {
                 this.scaleFactor = scaleFactor;
                 if (scaleFactor > treshold) {
-                    builder.setTargetView(targetView);
+                    if (targetView != null)
+                        builder.setTargetView(targetView);
                 } else {
-                    builder.setTargetView(startingView);
+                    if (startingView != null)
+                        builder.setTargetView(startingView);
                 }
                 for (ZoomListener listener : listeners) {
                     if (listener != null)
