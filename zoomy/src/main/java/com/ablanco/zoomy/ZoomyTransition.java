@@ -8,15 +8,17 @@ public class ZoomyTransition {
 
     Zoomy.Builder zoomyBuilder;
     public Float treshold;
+    public boolean isZooming;
+    public float scaleFactor;
 
     public ZoomyTransition(final Zoomy.Builder builder, final Float treshold) {
         this.treshold = treshold;
         zoomyBuilder = builder;
         zoomyBuilder.zoomListener(new com.ablanco.zoomy.ZoomListener() {
-            float scaleFactor = 1f;
 
             @Override
             public void onViewStartedZooming(View view) {
+                isZooming = true;
                 for (ZoomListener listener : listeners) {
                     if (listener != null)
                         listener.onZoomStarted();
@@ -25,6 +27,7 @@ public class ZoomyTransition {
 
             @Override
             public void onViewEndedZooming(View view) {
+                isZooming = false;
                 for (ZoomListener listener : listeners) {
                     if (listener != null)
                         listener.zoomEnded(scaleFactor);
@@ -32,8 +35,8 @@ public class ZoomyTransition {
             }
 
             @Override
-            public void onViewScaled(View view, float scaleFactor) {
-                this.scaleFactor = scaleFactor;
+            public void onViewScaled(View view, float scale) {
+                scaleFactor = scale;
                 if (scaleFactor > treshold) {
                     if (targetView != null)
                         builder.setTargetView(targetView);
