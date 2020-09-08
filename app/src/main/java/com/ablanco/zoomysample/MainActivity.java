@@ -14,10 +14,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.ablanco.zoomy.DoubleTapListener;
-import com.ablanco.zoomy.FlingListener;
 import com.ablanco.zoomy.LongPressListener;
-import com.ablanco.zoomy.ScrollListener;
 import com.ablanco.zoomy.TapListener;
+import com.ablanco.zoomy.TouchListener;
 import com.ablanco.zoomy.ZoomListener;
 import com.ablanco.zoomy.Zoomy;
 
@@ -91,11 +90,12 @@ public class MainActivity extends AppCompatActivity {
                                     + v.getTag(), Toast.LENGTH_SHORT).show();
                         }
                     })
-                    .scrollListener(new ScrollListener() {
+                    .touchListener(new TouchListener() {
                         @Override
-                        public void onScroll(View v, MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-                            Toast.makeText(MainActivity.this, "Scroll on "
-                                    + v.getTag(), Toast.LENGTH_SHORT).show();
+                        public void onTouch(MotionEvent ev) {
+//                            if (ev.getAction() == MotionEvent.ACTION_MOVE) {
+//                                Toast.makeText(MainActivity.this, "Moving", Toast.LENGTH_SHORT).show();
+//                            }
                         }
                     })
                     .zoomListener(new ZoomListener() {
