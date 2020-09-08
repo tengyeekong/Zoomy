@@ -13,7 +13,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.ablanco.zoomy.DoubleTapListener;
+import com.ablanco.zoomy.FlingListener;
 import com.ablanco.zoomy.LongPressListener;
+import com.ablanco.zoomy.ScrollListener;
 import com.ablanco.zoomy.TapListener;
 import com.ablanco.zoomy.Zoomy;
 
@@ -83,6 +85,18 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onDoubleTap(View v) {
                             Toast.makeText(MainActivity.this, "Double tap on "
+                                    + v.getTag(), Toast.LENGTH_SHORT).show();
+                        }
+                    }).scrollListener(new ScrollListener() {
+                        @Override
+                        public void onScroll(View v) {
+                            Toast.makeText(MainActivity.this, "Scroll on "
+                                    + v.getTag(), Toast.LENGTH_SHORT).show();
+                        }
+                    }).flingListener(new FlingListener() {
+                        @Override
+                        public void onFling(View v) {
+                            Toast.makeText(MainActivity.this, "Fling on "
                                     + v.getTag(), Toast.LENGTH_SHORT).show();
                         }
                     });

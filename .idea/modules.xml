@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/StudioProjects-Zoomy.iml" filepath="$PROJECT_DIR$/.idea/modules/StudioProjects-Zoomy.iml" group="Zoomy" />
       <module fileurl="file://$PROJECT_DIR$/Zoomy.iml" filepath="$PROJECT_DIR$/Zoomy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Zoomy-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Zoomy-app.iml" group="Zoomy/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/zoomy/Zoomy-zoomy.iml" filepath="$PROJECT_DIR$/.idea/modules/zoomy/Zoomy-zoomy.iml" group="Zoomy/zoomy" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Zoomy3.iml" filepath="$PROJECT_DIR$/.idea/modules/Zoomy3.iml" group="Zoomy3" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Zoomy3-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Zoomy3-app.iml" group="Zoomy3/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />

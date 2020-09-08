@@ -38,6 +38,8 @@ public class Zoomy {
         private TapListener mTapListener;
         private LongPressListener mLongPressListener;
         private DoubleTapListener mdDoubleTapListener;
+        private ScrollListener mScrollListener;
+        private FlingListener mFlingListener;
         private ZoomableTouchListener zoomableTouchListener;
 
         public Builder(Activity activity) {
@@ -95,10 +97,21 @@ public class Zoomy {
             return this;
         }
 
-
         public Builder doubleTapListener(DoubleTapListener listener) {
             checkNotDisposed();
             this.mdDoubleTapListener = listener;
+            return this;
+        }
+
+        public Builder scrollListener(ScrollListener listener) {
+            checkNotDisposed();
+            this.mScrollListener = listener;
+            return this;
+        }
+
+        public Builder flingListener(FlingListener listener) {
+            checkNotDisposed();
+            this.mFlingListener = listener;
             return this;
         }
 
@@ -111,7 +124,7 @@ public class Zoomy {
                 throw new IllegalArgumentException("Target view must not be null");
             zoomableTouchListener = new ZoomableTouchListener(mTargetContainer, mTargetView,
                     mConfig, mZoomInterpolator, mZoomListener, mTapListener, mLongPressListener,
-                    mdDoubleTapListener);
+                    mdDoubleTapListener, mScrollListener, mFlingListener);
             mTargetView.setOnTouchListener(zoomableTouchListener);
             mDisposed = true;
         }

@@ -29,6 +29,8 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
     private final TapListener mTapListener;
     private final LongPressListener mLongPressListener;
     private final DoubleTapListener mDoubleTapListener;
+    private final ScrollListener mScrollListener;
+    private final FlingListener mFlingListener;
     private int mState = STATE_IDLE;
     private TargetContainer mTargetContainer;
     View mTarget;
@@ -53,6 +55,18 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
                 @Override
                 public boolean onDoubleTap(MotionEvent e) {
                     if (mDoubleTapListener != null) mDoubleTapListener.onDoubleTap(mTarget);
+                    return true;
+                }
+
+                @Override
+                public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                    if (mScrollListener != null) mScrollListener.onScroll(mTarget);
+                    return true;
+                }
+
+                @Override
+                public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                    if (mFlingListener != null) mFlingListener.onFling(mTarget);
                     return true;
                 }
             };
@@ -89,7 +103,9 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
                           ZoomListener zoomListener,
                           TapListener tapListener,
                           LongPressListener longPressListener,
-                          DoubleTapListener doubleTapListener) {
+                          DoubleTapListener doubleTapListener,
+                          ScrollListener scrollListener,
+                          FlingListener flingListener) {
         this.mTargetContainer = targetContainer;
         this.mTarget = view;
         this.mConfig = config;
@@ -101,6 +117,8 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
         this.mTapListener = tapListener;
         this.mLongPressListener = longPressListener;
         this.mDoubleTapListener = doubleTapListener;
+        this.mScrollListener = scrollListener;
+        this.mFlingListener = flingListener;
     }
 
     @Override
