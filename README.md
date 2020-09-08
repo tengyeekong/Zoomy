@@ -4,11 +4,7 @@ Zoomy is an easy to use pinch-to-zoom Android library
 ![alt tag](art/zoomy.gif)
 ## Installation
 
-Zoomy is available in the JCenter, so you just need to add it as a dependency
-```gradle
-compile 'com.ablanco.zoomy:zoomy:{latest version}'
-```
-where `{latest version}` corresponds to published version in JCenter [ ![Download](https://api.bintray.com/packages/ablanco/maven/zoomy/images/download.svg) ](https://bintray.com/ablanco/maven/zoomy/_latestVersion)
+#### Current release: [![](https://jitpack.io/v/tengyeekong/Zoomy.svg)](https://jitpack.io/#tengyeekong/Zoomy)
 
 ##Usage 
 
