@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
@@ -17,6 +18,7 @@ import com.ablanco.zoomy.FlingListener;
 import com.ablanco.zoomy.LongPressListener;
 import com.ablanco.zoomy.ScrollListener;
 import com.ablanco.zoomy.TapListener;
+import com.ablanco.zoomy.ZoomListener;
 import com.ablanco.zoomy.Zoomy;
 
 import java.util.ArrayList;
@@ -81,22 +83,37 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "Long press on "
                                     + v.getTag(), Toast.LENGTH_SHORT).show();
                         }
-                    }).doubleTapListener(new DoubleTapListener() {
+                    })
+                    .doubleTapListener(new DoubleTapListener() {
                         @Override
                         public void onDoubleTap(View v) {
                             Toast.makeText(MainActivity.this, "Double tap on "
                                     + v.getTag(), Toast.LENGTH_SHORT).show();
                         }
-                    }).scrollListener(new ScrollListener() {
+                    })
+                    .scrollListener(new ScrollListener() {
                         @Override
-                        public void onScroll(View v) {
+                        public void onScroll(View v, MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
                             Toast.makeText(MainActivity.this, "Scroll on "
                                     + v.getTag(), Toast.LENGTH_SHORT).show();
                         }
-                    }).flingListener(new FlingListener() {
+                    })
+                    .zoomListener(new ZoomListener() {
                         @Override
-                        public void onFling(View v) {
-                            Toast.makeText(MainActivity.this, "Fling on "
+                        public void onViewStartedZooming(View v) {
+                            Toast.makeText(MainActivity.this, "onViewStartedZooming "
+                                    + v.getTag(), Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onViewEndedZooming(View v) {
+                            Toast.makeText(MainActivity.this, "onViewEndedZooming "
+                                    + v.getTag(), Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onViewScaled(View v, float scaleFactor) {
+                            Toast.makeText(MainActivity.this, "onViewScaled "
                                     + v.getTag(), Toast.LENGTH_SHORT).show();
                         }
                     });

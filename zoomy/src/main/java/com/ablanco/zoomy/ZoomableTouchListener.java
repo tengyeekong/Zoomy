@@ -30,7 +30,6 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
     private final LongPressListener mLongPressListener;
     private final DoubleTapListener mDoubleTapListener;
     private final ScrollListener mScrollListener;
-    private final FlingListener mFlingListener;
     private int mState = STATE_IDLE;
     private TargetContainer mTargetContainer;
     View mTarget;
@@ -60,13 +59,7 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
 
                 @Override
                 public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-                    if (mScrollListener != null) mScrollListener.onScroll(mTarget);
-                    return true;
-                }
-
-                @Override
-                public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-                    if (mFlingListener != null) mFlingListener.onFling(mTarget);
+                    if (mScrollListener != null) mScrollListener.onScroll(mTarget, e1, e2, distanceX, distanceY);
                     return true;
                 }
             };
@@ -104,8 +97,7 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
                           TapListener tapListener,
                           LongPressListener longPressListener,
                           DoubleTapListener doubleTapListener,
-                          ScrollListener scrollListener,
-                          FlingListener flingListener) {
+                          ScrollListener scrollListener) {
         this.mTargetContainer = targetContainer;
         this.mTarget = view;
         this.mConfig = config;
@@ -118,7 +110,6 @@ class ZoomableTouchListener implements View.OnTouchListener, ScaleGestureDetecto
         this.mLongPressListener = longPressListener;
         this.mDoubleTapListener = doubleTapListener;
         this.mScrollListener = scrollListener;
-        this.mFlingListener = flingListener;
     }
 
     @Override

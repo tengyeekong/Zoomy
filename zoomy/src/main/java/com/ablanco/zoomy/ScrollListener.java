@@ -1,5 +1,6 @@
 package com.ablanco.zoomy;
 
+import android.view.MotionEvent;
 import android.view.View;
 
 /**
@@ -8,5 +9,5 @@ import android.view.View;
  */
 
 public interface ScrollListener {
-    void onScroll(View v);
+    void onScroll(View v, MotionEvent e1, MotionEvent e2, float distanceX, float distanceY);
 }
